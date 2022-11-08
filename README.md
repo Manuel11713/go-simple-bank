@@ -11,6 +11,13 @@ docker run --name postgres15 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASS
 docker exec -it postgres15 psql -U root  # just to test the connection
 ```
 
+**SQLC**
+https://sqlc.dev/
+
+```bash
+brew install sqlc
+```
+
 **Table plus**
 https://tableplus.com/
 
@@ -43,3 +50,23 @@ docker exec -it postgres15 psql -U root simple_bank
 ```
 
 _\*Makefile is ready to run docker postgres image and crate the database_
+
+**Setup SQLC**
+
+```bash
+sqlc init
+```
+
+Schemas will be the migration folder containing the CREATE DATABASE statements.
+Queries will be the folder containing the database queries
+Path will be the generated code
+
+```bash
+sqlc generate
+```
+
+or
+
+```bash
+make sqlc
+```
