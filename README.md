@@ -31,6 +31,18 @@ brew install golang-migrate
 migrate create -ext sql -dir db/migration -seq init_schema
 ```
 
+**Go-postgres driver**
+
+```bash
+go get github.com/lib/pq
+```
+
+**Testify**
+
+```bash
+go get github.com/stretchr/testify
+```
+
 ### Creating a new db inside docker postgres image
 
 ```bash
