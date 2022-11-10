@@ -10,7 +10,7 @@ import (
 
 var testAccount Account
 
-func TestCreateAccount(t *testing.T) {
+func createRandomAccount(t *testing.T) Account {
 	arg := CreateAccountParams{
 		Owner:    utils.RandomOwner(),
 		Balance:  utils.RandomMoney(),
@@ -29,6 +29,12 @@ func TestCreateAccount(t *testing.T) {
 	require.NotZero(t, account.ID)
 	require.NotZero(t, account.CreatedAt)
 	testAccount = account
+
+	return account
+}
+
+func TestCreateAccount(t *testing.T) {
+	createRandomAccount(t)
 }
 
 func TestGetAccount(t *testing.T) {
@@ -83,13 +89,7 @@ func TestDeleteAccount(t *testing.T) {
 
 func TestListAccounts(t *testing.T) {
 	for i := 0; i < 10; i++ {
-		arg := CreateAccountParams{
-			Owner:    utils.RandomOwner(),
-			Balance:  utils.RandomMoney(),
-			Currency: utils.RandomCurrency(),
-		}
-
-		queries.CreateAccount(context.Background(), arg)
+		createRandomAccount(t)
 	}
 
 	args := ListAccountsParams{
