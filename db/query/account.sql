@@ -12,6 +12,10 @@ VALUES (
 SELECT * FROM accounts
 where id =$1 LIMIT 1;
 
+-- name: GetAccountForUpdate :one
+SELECT * FROM accounts
+where id =$1 LIMIT 1
+FOR NO KEY UPDATE;
 
 -- name: ListAccounts :many
 SELECT * FROM accounts
