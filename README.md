@@ -92,3 +92,9 @@ https://github.com/golang/mock
 ```bash
 mockgen -destination db/mock/store.go -package mockdb github.com/Manuel11713/simple-bank/db/sqlc Store
 ```
+
+**Create New Migration**
+
+```bash
+migrate create -ext sql -dir db/migration -seq add_users
+```
