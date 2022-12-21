@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 
 	mockdb "github.com/Manuel11713/simple-bank/db/mock"
 	db "github.com/Manuel11713/simple-bank/db/sqlc"
@@ -16,6 +17,18 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 )
+
+func newTestServer(t *testing.T, store db.Store) *Server {
+	config := &utils.Config{
+		TokenSymmectricKey:  utils.RandomString(32),
+		AccessTokenDuration: time.Minute,
+	}
+
+	server, err := NewServer(config, store)
+	require.NoError(t, err)
+
+	return server
+}
 
 func TestGetAccountAPI(t *testing.T) {
 	account := randomAccount()
@@ -80,7 +93,8 @@ func TestGetAccountAPI(t *testing.T) {
 			tc.buildStubs(store)
 
 			// start test server and send request
-			server := NewServer(store)
+			server := newTestServer(t, store)
+
 			recorder := httptest.NewRecorder()
 
 			url := fmt.Sprintf("/accounts/%d", account.ID)
