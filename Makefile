@@ -17,7 +17,7 @@ migratedown:
 	migrate -path db/migration -database "postgresql://postgres:dMVm4HwrMzpVtGPFdLLC@database-aurora-postgres.cluster-c1boodh9e4gj.us-east-1.rds.amazonaws.com:5432/simple_bank" --verbose down
 
 migratedown1:
-	migrate -path db/migration -database "postgresql://postgres:dMVm4HwrMzpVtGPFdLLC@database-aurora-postgres.cluster-c1boodh9e4gj.us-east-1.rds.amazonaws.com:5432/simple_bank?sslmode=disable" --verbose down 1
+	migrate -path db/migration -database "postgresql://postgres:dMVm4HwrMzpVtGPFdLLC@database-aurora-postgres.cluster-c1boodh9e4gj.us-east-1.rds.amazonaws.com:5432/simple_bank" --verbose down 1
 
 sqlc:
 	sqlc generate
