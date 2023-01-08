@@ -98,3 +98,11 @@ mockgen -destination db/mock/store.go -package mockdb github.com/Manuel11713/sim
 ```bash
 migrate create -ext sql -dir db/migration -seq add_users
 ```
+
+**Using aws secrets manager and jq to parse the envars**
+https://stedolan.github.io/jq/
+
+```bash
+aws secretsmanager get-secret-value --secret-id simple_bank_secrets --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' >
+app.env
+```
